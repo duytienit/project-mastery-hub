@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,7 +32,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full py-12 flex items-center justify-center bg-gray-50 animate-fade-in">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen w-full py-12 flex items-center justify-center bg-gray-50"
+    >
       <div className="absolute top-6 left-6">
         <Link 
           to="/" 
@@ -41,7 +47,12 @@ const Login = () => {
         </Link>
       </div>
       
-      <div className="container flex items-center justify-center animate-fade-in-up">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="container flex items-center justify-center"
+      >
         <div className="w-full max-w-md">
           <Card className="shadow-lg border-none">
             <CardHeader className="space-y-1 text-center">
@@ -72,12 +83,12 @@ const Login = () => {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <Label htmlFor="password">Password</Label>
-                        <Link 
-                          to="/forgot-password" 
+                        <button 
+                          type="button"
                           className="text-sm text-projectflow-green hover:underline"
                         >
                           Forgot password?
-                        </Link>
+                        </button>
                       </div>
                       <Input 
                         id="password" 
@@ -173,19 +184,19 @@ const Login = () => {
             
             <div className="mt-4 text-center text-sm text-muted-foreground">
               By continuing, you agree to our{" "}
-              <Link to="/terms" className="text-projectflow-green hover:underline">
+              <button type="button" className="text-projectflow-green hover:underline">
                 Terms of Service
-              </Link>{" "}
+              </button>{" "}
               and{" "}
-              <Link to="/privacy" className="text-projectflow-green hover:underline">
+              <button type="button" className="text-projectflow-green hover:underline">
                 Privacy Policy
-              </Link>
+              </button>
               .
             </div>
           </Card>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

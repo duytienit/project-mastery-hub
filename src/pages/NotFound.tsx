@@ -15,7 +15,12 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -64,7 +69,7 @@ const NotFound = () => {
           <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-projectflow-orange/5 rounded-full filter blur-3xl"></div>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
