@@ -1,15 +1,16 @@
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +18,12 @@ const Login = () => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // Navigate would happen here in a real implementation
+      toast({
+        title: "Login successful",
+        description: "Welcome back to ProjectFlow!",
+      });
+      // Navigate to projects page after successful login
+      navigate('/projects');
     }, 1500);
   };
 
@@ -27,7 +33,12 @@ const Login = () => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      // Navigate would happen here in a real implementation
+      toast({
+        title: "Account created!",
+        description: "Your ProjectFlow account has been created successfully.",
+      });
+      // Navigate to projects page after successful signup
+      navigate('/projects');
     }, 1500);
   };
 
